@@ -94,7 +94,7 @@ function LoginForm({ email, setEmail }) {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div id="create-account-container">
         <p id="create-account-text">Not Registered?</p>
-        <a id="create-account-link" href="https://aaronnewtech.github.io/speech-app/create-account">
+        <a id="create-account-link" href="https://aaronnewtech.github.io/create-account">
           Create an account
         </a>
       </div>
