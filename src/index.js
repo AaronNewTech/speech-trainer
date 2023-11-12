@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 // import ReactDOM from "react-dom/client"; // Import ReactDOM from "react-dom"
 import { BrowserRouter } from "react-router-dom";
 // import UseContext from "./components/UseContext";
-import App from "./components/App";
+import App from "./App";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
