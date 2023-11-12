@@ -1,16 +1,34 @@
 {
+  "homepage": "https://aaronnewtech.github.io/speech-app/",
+  "name": "client",
+  "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5555",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
+    "@google-cloud/text-to-speech": "^5.0.1",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^13.5.0",
+    "formik": "^2.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^3.0.4"
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "^5.0.1",
+    "react-speech-recognition": "^3.10.0",
+    "react-youtube": "^10.1.0",
+    "speak-tts": "^2.0.8",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.3.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
