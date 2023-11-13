@@ -72,7 +72,7 @@ function CreateUser({ loggedIn, setLoggedIn }) {
       <form onSubmit={formik.handleSubmit} className="form"></form>
       <div id="login-link-container">
         <p id="login-link-text">Already have an account?</p>
-        <a id="login-link" href="https://aaronnewtech.github.io/login">
+        <a id="login-link" href="/login">
           Login in
         </a>
       </div>

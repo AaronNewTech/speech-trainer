@@ -16,7 +16,6 @@ import Videos from "./Videos";
 
 function App() {
   const [email, setEmail] = useState("");
-  
 
   // console.log(email)
   return (
@@ -39,10 +38,6 @@ function App() {
             path="/rock-paper-scissors-game"
             element={<RockPaperScissors />}
           />
-
-          {/* <Route exact path="/snake_game" element={<SnakeGame loggedIn={loggedIn} setLoggedIn={setLoggedIn} score={score} setscore={setScore} />} />
-        <Route exact path="/tic_tac_toe_game" element={<TicTacToe loggedIn={loggedIn} setLoggedIn={setLoggedIn} score={score} setScore={setscore} />} /> */}
-
           <Route exact path="/favorite-cards" element={<SavedCards />} />
           <Route
             exact
