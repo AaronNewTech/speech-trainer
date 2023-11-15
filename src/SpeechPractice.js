@@ -7,7 +7,7 @@ import Speech from "speak-tts";
 import FlashCard from "./FlashCard";
 import { useNavigate } from "react-router-dom";
 
-const SpeechPractice = ({ email, setEmail }) => {
+const SpeechPractice = ({ email, setEmail, showModal }) => {
   const { user } = useAuth();
   const [randomSound, setRandomSound] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -200,7 +200,8 @@ const SpeechPractice = ({ email, setEmail }) => {
       <button onClick={handleClick}>Start Recording</button>
       <button onClick={() => SpeechRecognition.stopListening()}>Stop</button>
       <button onClick={handlePlayText}>Play Audio</button>
-      <button onClick={handleNextCard}>Next Card</button>
+      {showModal ? <></> : <button onClick={handleNextCard}>Next Card</button>}
+      
       {/* <button onClick={() => resetTranscript()}>Reset</button> */}
       <h3>Your Speech: {transcript} </h3>
       <h2>{result}</h2>

@@ -157,7 +157,7 @@ const Videos = () => {
             contentLabel="Example Modal"
             onRequestClose={closeModal}
           >
-            <SpeechPractice />
+            <SpeechPractice showModal={showModal} />
           </Modal>
         )}
       </div>
