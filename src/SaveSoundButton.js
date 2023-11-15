@@ -10,11 +10,15 @@ function SaveSoundButton({ soundId, email }) {
   useEffect(() => {
     fetchUserSavedSounds();
   }, []);
-
+  const token = localStorage.getItem("isLoggedIn")
   // Fetch user's saved sounds
   const fetchUserSavedSounds = async () => {
     try {
-      const response = await fetch("https://arnhsmith.pythonanywhere.com/user_saved_sounds_button");
+      const response = await fetch("https://arnhsmith.pythonanywhere.com/user_saved_sounds_button", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
       if (response.ok) {
         const userSoundData = await response.json();
@@ -70,7 +74,7 @@ function SaveSoundButton({ soundId, email }) {
       console.error("Error:", error);
     }
   };
-  // console.log(userSavedSounds)
+  console.log(user)
   return (
     <div>
       {user ? (

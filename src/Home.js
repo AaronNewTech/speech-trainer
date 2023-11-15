@@ -25,12 +25,13 @@ function Home() {
           />
         </div>
         <div className="column">
-          <div>
-            <img
+        <img
               id="home-level-up-image"
               src={process.env.PUBLIC_URL + "/images/HomePageImages/Home2.png"}
               alt="level-up"
             />
+          {/* <div>
+            
             {user ? (
               <NavLink to={"/login"}>
                 <img
@@ -54,7 +55,7 @@ function Home() {
                 />
               </NavLink>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
       <div id="home-page-2">

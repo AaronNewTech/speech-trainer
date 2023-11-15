@@ -56,7 +56,7 @@ function LoginForm({ email, setEmail }) {
     localStorage.clear();
     logout(); // Update the user state using the logout function from useAuth
   };
-
+  console.log(user)
   return (
     <div id="login-container">
       {user ? (

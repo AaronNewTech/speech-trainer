@@ -12,14 +12,14 @@ function NavBar() {
           <div>
             <NavLink to="/"> Home </NavLink>
           </div>
-          <div>
+          {/* <div>
             <NavLink to="/login"> Login </NavLink>
-          </div>
+          </div> */}
           <div>
             <NavLink to="/about"> About </NavLink>
           </div>
 
-          {user ? (
+          {/* {user ? (
             <div className="dropdown">
               <NavLink>My Cards</NavLink>
               <div>
@@ -35,7 +35,7 @@ function NavBar() {
             </div>
           ) : (
             <></>
-          )}
+          )} */}
 
           {/* Dropdown menu */}
           <div className="dropdown">

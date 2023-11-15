@@ -192,17 +192,20 @@ const SpeechPractice = ({ email, setEmail }) => {
   //   // Update the transcript when the textarea value changes
   //   resetTranscript(); // Reset the transcript since it's controlled
   // };
-
+  console.log(result)
   return (
     <div className="voice-test">
       {user ? <div id="score">Score: {score}</div> : <div></div>}
       <p id="microphone">Microphone: {listening ? "on" : "off"}</p>
-      <button onClick={handleClick}>Start</button>
+      <button onClick={handleClick}>Start Recording</button>
       <button onClick={() => SpeechRecognition.stopListening()}>Stop</button>
+      <button onClick={handlePlayText}>Play Audio</button>
+      <button onClick={handleNextCard}>Next Card</button>
       {/* <button onClick={() => resetTranscript()}>Reset</button> */}
       <h3>Your Speech: {transcript} </h3>
-      <br />
-      <br />
+      <h2>{result}</h2>
+      {/* <br />
+      <br /> */}
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -216,17 +219,17 @@ const SpeechPractice = ({ email, setEmail }) => {
       )}
       <br />
 
-      <button onClick={handlePlayText}>Play Audio</button>
+      
       <br />
       <br />
-      <h2>{result}</h2>
+      
       <br />
       {/* {hasSpokenGreatJob ? (
         <button onClick={handleNextCard}>Next Card</button>
       ) : (
         <div></div>
       )} */}
-      <button onClick={handleNextCard}>Next Card</button>
+      
       {/* <button onClick={handleSaveSound}>Save Sound</button> */}
     </div>
   );

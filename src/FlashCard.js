@@ -17,7 +17,7 @@ function FlashCard({ sound, email }) {
             <img src={imagePath} alt={sound.sound} />
           )}
         </div>
-        <SaveSoundButton soundId={sound.id} email={email} />
+        {/* <SaveSoundButton soundId={sound.id} email={email} /> */}
       </div>
     </div>
   );
