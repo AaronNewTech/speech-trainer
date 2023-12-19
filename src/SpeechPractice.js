@@ -62,9 +62,9 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
       if (response.ok) {
         randomSoundData = await response.json();
         await initPlayText(randomSoundData.sound);
-        let temp = randomSoundData
+        // let temp = randomSoundData
         setRandomSound(randomSoundData);
-        setFlashCard(<FlashCard sound={temp} email={email} />)
+        setFlashCard(<FlashCard sound={randomSoundData} email={email} />)
         setLoading(false);
       } else {
         setLoading(false);

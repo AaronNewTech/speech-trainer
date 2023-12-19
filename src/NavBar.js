@@ -12,6 +12,22 @@ function NavBar() {
           <div>
             <NavLink to="/"> Home </NavLink>
           </div>
+          <div className="dropdown">
+            <NavLink>Speech Practice</NavLink>
+            <div>
+              <div className="dropdown-content">
+                <div>
+                  <NavLink to="/videos"> Video Speech Trainer </NavLink>
+                </div>
+                <div>
+                  <NavLink to="/speech-practice"> First Words </NavLink>
+                </div>
+                <div>
+                  <NavLink to="/rock-paper-scissors-game">Games</NavLink>
+                </div>
+              </div>
+            </div>
+          </div>
           {/* <div>
             <NavLink to="/login"> Login </NavLink>
           </div> */}
@@ -38,22 +54,7 @@ function NavBar() {
           )} */}
 
           {/* Dropdown menu */}
-          <div className="dropdown">
-            <NavLink>Speech Practice</NavLink>
-            <div>
-              <div className="dropdown-content">
-                <div>
-                  <NavLink to="/videos"> Video Speech Trainer </NavLink>
-                </div>
-                <div>
-                  <NavLink to="/speech-practice"> First Words </NavLink>
-                </div>
-                <div>
-                  <NavLink to="/rock-paper-scissors-game">Games</NavLink>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div className="social-icons">
           <NavLink to="https://www.facebook.com/">
