@@ -17,8 +17,10 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
     const storedScore = localStorage.getItem("score");
     return storedScore ? parseInt(storedScore, 10) : 0;
   });
+  const [maxSound, setMaxSound] = useState(null)
+  const[flashCard, setFlashCard] = useState(null)
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const minSoundId = 1;
   // const maxSoundId = 100;
 
@@ -36,9 +38,9 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
       // console.log(response)
       if (response.ok) {
         const maxSoundData = await response.json();
-        // console.log(maxSoundData)
         // let id = maxSoundData;
-        // setMaxSoundId(id);
+
+        setMaxSound(maxSoundData);
         // console.log(maxSoundId)
         fetchRandomSound(maxSoundData);
       } else {
@@ -56,12 +58,13 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
         Math.floor(Math.random() * (maxSoundId - minSoundId + 1)) + minSoundId;
       // console.log("random", randomSoundId);
       const response = await fetch(`https://arnhsmith.pythonanywhere.com/sounds/${randomSoundId}`);
-
+      // console.log(randomSoundId)
       if (response.ok) {
         randomSoundData = await response.json();
         await initPlayText(randomSoundData.sound);
-
+        let temp = randomSoundData
         setRandomSound(randomSoundData);
+        setFlashCard(<FlashCard sound={temp} email={email} />)
         setLoading(false);
       } else {
         setLoading(false);
@@ -184,15 +187,13 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
     handleScoreChange();
   }
 
-  const handleNextCard = () => {
-    navigate("/empty-route");
-  };
 
-  // const handleTextareaChange = (event) => {
-  //   // Update the transcript when the textarea value changes
-  //   resetTranscript(); // Reset the transcript since it's controlled
-  // };
-  console.log(result)
+  function handleCards() {
+    fetchRandomSound(maxSound);
+  }
+
+  
+  // console.log(randomSound)
   return (
     <div className="voice-test">
       {user ? <div id="score">Score: {score}</div> : <div></div>}
@@ -200,7 +201,8 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
       <button onClick={handleClick}>Start Recording</button>
       <button onClick={() => SpeechRecognition.stopListening()}>Stop</button>
       <button onClick={handlePlayText}>Play Audio</button>
-      {showModal ? <></> : <button onClick={handleNextCard}>Next Card</button>}
+      {showModal ? <></> : <button onClick={() => handleCards()}>Next Card</button>}
+
       
       {/* <button onClick={() => resetTranscript()}>Reset</button> */}
       <h3>Your Speech: {transcript} </h3>
@@ -213,7 +215,7 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
         <>
           {randomSound && (
             <>
-              <FlashCard sound={randomSound} email={email} />
+              {flashCard}
             </>
           )}
         </>

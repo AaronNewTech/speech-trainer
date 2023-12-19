@@ -1,4 +1,4 @@
-// npm start --prefix client
+// npm start
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
