@@ -22,8 +22,3 @@ Once you have installed Speech Trainer and created a profile for your child, you
 2. **Practice Regularly**: Encourage your child to use Speech Trainer regularly to reinforce their language skills.
 
 3. **Explore Interactive Lessons**: Dive into the interactive lessons, games, and exercises to make learning enjoyable.
-
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
