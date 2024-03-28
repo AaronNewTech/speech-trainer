@@ -27,7 +27,6 @@ function CreateUser({ loggedIn, setLoggedIn }) {
           }
         })
         .then((user) => {
-          // Handle the successful response here, if needed
 
           setSuccessMessage(`User created: ${user}`);
           console.log("User created:", user);
@@ -60,7 +59,7 @@ function CreateUser({ loggedIn, setLoggedIn }) {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
-        {/* Rest of your form */}
+        
         {formErrors.length > 0 && (
           <p style={{ color: "red" }}>{formErrors.join(", ")}</p>
         )}

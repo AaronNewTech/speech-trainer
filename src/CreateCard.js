@@ -37,7 +37,6 @@ function CreateCard() {
       });
 
       if (response.ok) {
-        // sound deleted successfully, update the sounds list by refetching
         fetchAllSounds();
       } else {
         console.error("Error deleting sound:", response.statusText);
@@ -48,9 +47,9 @@ function CreateCard() {
   };
 
   const handleEdit = (sound) => {
-    // Set the selected sound for editing
+    
     setSelectedSound(sound);
-    // Initialize the updateData with the current sound's data
+    
     setUpdateData({
       sound: sound.sound || "",
       image: sound.image || "",
@@ -67,13 +66,13 @@ function CreateCard() {
     })
       .then((response) => {
         if (response.ok) {
-          // sound updated successfully, refresh the sounds list
+          
           fetchAllSounds();
-          setSelectedSound(null); // Clear the selected sound
+          setSelectedSound(null); 
           setUpdateData({
             sound: updateData.sound,
             image: updateData.image,
-          }); // Clear the update data
+          }); 
         } else {
           console.error("Error updating sound:", response.statusText);
         }
@@ -84,7 +83,7 @@ function CreateCard() {
   const formik = useFormik({
     initialValues: {
       sound: "",
-      image: "", // Add image URL field
+      image: "", 
     },
     onSubmit: async (values) => {
       const newSound = {
@@ -103,7 +102,7 @@ function CreateCard() {
       if (response.ok) {
         // eslint-disable-next-line
         const sound = await response.json();
-        // addSound(sound);
+
         formik.resetForm();
         fetchAllSounds();
         setFormErrors([]);
@@ -113,7 +112,7 @@ function CreateCard() {
       }
     },
   });
-  // console.log(sounds)
+  
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className="new-sound-form">
@@ -127,7 +126,6 @@ function CreateCard() {
           placeholder="Sound"
         />
 
-        {/* Add input for the image URL */}
         <label htmlFor="email">Image: </label>
         <input
           id="image"

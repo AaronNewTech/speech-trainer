@@ -6,7 +6,7 @@ function UseContext({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Check local storage for user authentication status on component mount
+ 
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     if (isLoggedIn) {
       setUser(true);

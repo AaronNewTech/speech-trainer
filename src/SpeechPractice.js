@@ -5,7 +5,6 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import Speech from "speak-tts";
 import FlashCard from "./FlashCard";
-import { useNavigate } from "react-router-dom";
 
 const SpeechPractice = ({ email, setEmail, showModal }) => {
   const { user } = useAuth();
@@ -13,16 +12,15 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
   const [loading, setLoading] = useState(true);
   const [hasSpokenGreatJob, setHasSpokenGreatJob] = useState(false);
   const [score, setScore] = useState(() => {
-    // Initialize score from localStorage, or 0 if not present
+    
     const storedScore = localStorage.getItem("score");
     return storedScore ? parseInt(storedScore, 10) : 0;
   });
-  const [maxSound, setMaxSound] = useState(null)
-  const[flashCard, setFlashCard] = useState(null)
+  const [maxSound, setMaxSound] = useState(null);
+  const [flashCard, setFlashCard] = useState(null);
 
-  // const navigate = useNavigate();
+  
   const minSoundId = 1;
-  // const maxSoundId = 100;
 
   useEffect(() => {
     fetchMaxSoundId();
@@ -30,18 +28,20 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
     if (user) {
       fetchUserScore();
     }
-  }, []);
+  }, [user]);
 
   const fetchMaxSoundId = async () => {
     try {
-      const response = await fetch("https://arnhsmith.pythonanywhere.com/get_last_sound_id");
-      // console.log(response)
+      const response = await fetch(
+        "https://arnhsmith.pythonanywhere.com/get_last_sound_id"
+      );
+      
       if (response.ok) {
         const maxSoundData = await response.json();
-        // let id = maxSoundData;
+        
 
         setMaxSound(maxSoundData);
-        // console.log(maxSoundId)
+
         fetchRandomSound(maxSoundData);
       } else {
         console.error("Failed to fetch max sound ID");
@@ -56,31 +56,34 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
     while (!randomSoundData) {
       const randomSoundId =
         Math.floor(Math.random() * (maxSoundId - minSoundId + 1)) + minSoundId;
-      // console.log("random", randomSoundId);
-      const response = await fetch(`https://arnhsmith.pythonanywhere.com/sounds/${randomSoundId}`);
-      // console.log(randomSoundId)
+      
+      const response = await fetch(
+        `https://arnhsmith.pythonanywhere.com/sounds/${randomSoundId}`
+      );
+      
       if (response.ok) {
         randomSoundData = await response.json();
         await initPlayText(randomSoundData.sound);
-        // let temp = randomSoundData
+        
         setRandomSound(randomSoundData);
-        setFlashCard(<FlashCard sound={randomSoundData} email={email} />)
+        setFlashCard(<FlashCard sound={randomSoundData} email={email} />);
         setLoading(false);
       } else {
-        setLoading(false);
+        fetchRandomSound(maxSoundId)
       }
     }
   };
 
   const fetchUserScore = async () => {
     try {
-      const response = await fetch("https://arnhsmith.pythonanywhere.com/user_score");
+      const response = await fetch(
+        "https://arnhsmith.pythonanywhere.com/user_score"
+      );
 
       if (response.ok) {
         const userScoreData = await response.json();
         const score = userScoreData.score;
 
-        // Update the score state and localStorage
         setScore(score);
         localStorage.setItem("score", score.toString());
       }
@@ -101,7 +104,7 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
   speech
     .init()
     .then((data) => {
-      // The "data" object contains the list of available voices and the voice synthesis params
+      
     })
     .catch((e) => {
       console.error("An error occurred while initializing:", e);
@@ -129,7 +132,7 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
   const {
     transcript,
     listening,
-    // resetTranscript,
+    
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
@@ -141,18 +144,21 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
     const newScore = score + 1;
 
     try {
-      const response = await fetch("https://arnhsmith.pythonanywhere.com/scores", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          score_value: newScore,
-        }),
-      });
+      const response = await fetch(
+        "https://arnhsmith.pythonanywhere.com/scores",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            score_value: newScore,
+          }),
+        }
+      );
 
       if (response.ok) {
-        // Update the score state and localStorage
+        
         setScore(newScore);
         localStorage.setItem("score", newScore.toString());
         console.log("Score updated successfully");
@@ -187,13 +193,10 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
     handleScoreChange();
   }
 
-
   function handleCards() {
     fetchRandomSound(maxSound);
   }
 
-  
-  // console.log(randomSound)
   return (
     <div className="voice-test">
       {user ? <div id="score">Score: {score}</div> : <div></div>}
@@ -201,38 +204,28 @@ const SpeechPractice = ({ email, setEmail, showModal }) => {
       <button onClick={handleClick}>Start Recording</button>
       <button onClick={() => SpeechRecognition.stopListening()}>Stop</button>
       <button onClick={handlePlayText}>Play Audio</button>
-      {showModal ? <></> : <button onClick={() => handleCards()}>Next Card</button>}
+      {showModal ? (
+        <></>
+      ) : (
+        <button onClick={() => handleCards()}>Next Card</button>
+      )}
 
-      
-      {/* <button onClick={() => resetTranscript()}>Reset</button> */}
       <h3>Your Speech: {transcript} </h3>
       <h2>{result}</h2>
-      {/* <br />
-      <br /> */}
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          {randomSound && (
-            <>
-              {flashCard}
-            </>
-          )}
-        </>
-      )}
+      
+      {loading ? <p>Loading...</p> : <>{randomSound && <>{flashCard}</>}</>}
       <br />
 
-      
       <br />
       <br />
-      
+
       <br />
       {/* {hasSpokenGreatJob ? (
         <button onClick={handleNextCard}>Next Card</button>
       ) : (
         <div></div>
       )} */}
-      
+
       {/* <button onClick={handleSaveSound}>Save Sound</button> */}
     </div>
   );

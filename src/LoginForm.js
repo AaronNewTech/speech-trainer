@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "./UseContext"; // Import the useAuth hook
+import { useAuth } from "./UseContext"; 
 
 function LoginForm({ email, setEmail }) {
   const { user, login, logout } = useAuth();
@@ -8,10 +8,10 @@ function LoginForm({ email, setEmail }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Check if the user is logged in on component mount
+    
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     if (isLoggedIn) {
-      login(true); // Update the user state using the login function from useAuth
+      login(true);
     }
   }, [login]);
 
@@ -28,33 +28,30 @@ function LoginForm({ email, setEmail }) {
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
-          // Login successful, update your app's state to indicate the user is logged in
-          login(); // Update the user state using the login function from useAuth
-          localStorage.setItem("isLoggedIn", "true"); // Store login status
-          setEmail(""); // Clear email field
-          setPassword(""); // Clear password field
-          setError(""); // Clear error
+          login(); 
+          localStorage.setItem("isLoggedIn", "true");
+          setEmail("");
+          setPassword("");
+          setError("");
 
-          // console.log("user logged in");
         } else {
-          // Login failed, display an error message
+          
           setError("Invalid email or password.");
         }
       } else {
-        // Request failed for some reason, display a general error message
+        
         setError("Login failed. Please try again later.");
       }
     } catch (error) {
-      // Handle any unexpected errors here
+      
       console.error("Error:", error);
     }
   };
 
   const handleLogout = () => {
-    // Logout the user by removing their login status from localStorage
     localStorage.removeItem("isLoggedIn");
     localStorage.clear();
-    logout(); // Update the user state using the logout function from useAuth
+    logout(); 
   };
   console.log(user)
   return (

@@ -29,22 +29,21 @@ const Videos = () => {
   };
 
   const onReady = (event) => {
-    // Player is ready to play
+    
     setPlayer(event.target);
   };
 
   const onPlay = (event) => {
-    // Video is playing
+    
     setIsPlaying(true);
   };
 
   const onPause = (event) => {
-    // Video is paused
     setIsPlaying(false);
   };
 
   const openModal = () => {
-    // Pause the video when the modal opens
+
     if (player) {
       player.pauseVideo();
     }
@@ -58,24 +57,23 @@ const Videos = () => {
       intervalId = setInterval(() => {
         setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
 
-        // Check if elapsed time is a multiple of 30 seconds
         if (elapsedTime > 0 && elapsedTime % 5 === 0) {
           openModal();
         }
-      }, 1000); // Update elapsed time every second
+      }, 1000);
     } else {
-      clearInterval(intervalId); // Pause the timer
+      clearInterval(intervalId);
     }
 
     return () => {
-      clearInterval(intervalId); // Cleanup: Clear the timer when the component unmounts
+      clearInterval(intervalId);
     };
   }, [isPlaying, elapsedTime, openModal]);
 
   const closeModal = () => {
     setShowModal(false);
 
-    // Continue playing the video (unpause)
+    
     if (player) {
       player.playVideo();
     }

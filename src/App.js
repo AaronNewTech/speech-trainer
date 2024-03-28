@@ -10,14 +10,12 @@ import SpeechPractice from "./SpeechPractice";
 import UseContext from "./UseContext";
 import About from "./About";
 import SavedCards from "./SavedCards";
-import EmptyRoute from "./EmptyRoute";
 import NavBar from "./NavBar";
 import Videos from "./Videos";
 
 function App() {
   const [email, setEmail] = useState("");
 
-  // console.log(email)
   return (
     <div>
       <UseContext>
@@ -44,7 +42,6 @@ function App() {
             path="/speech-practice"
             element={<SpeechPractice email={email} setEmail={setEmail} />}
           />
-          <Route exact path="/empty-route" element={<EmptyRoute />} />
         </Routes>
       </UseContext>
     </div>

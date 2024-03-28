@@ -64,9 +64,9 @@ const RockPaperScissors = () => {
   };
 
   useEffect(() => {
-    // Check if the Points is a multiple of 3 (increases by 3)
+
     if (counter % 3 === 0 && counter > 0) {
-      setIsOpen(true); // Open the modal when the Points increases by 3
+      setIsOpen(true); 
     }
   }, [counter]);
 

@@ -53,8 +53,6 @@ function NavBar() {
             <></>
           )} */}
 
-          {/* Dropdown menu */}
-          
         </div>
         <div className="social-icons">
           <NavLink to="https://www.facebook.com/">

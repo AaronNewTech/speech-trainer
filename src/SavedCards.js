@@ -14,7 +14,7 @@ function SavedCards() {
 
       if (response.ok) {
         const allSounds = await response.json();
-        // console.log(allSounds)
+    
         setSounds(allSounds);
       } else {
         console.error("Error fetching sounds:", response.statusText);
